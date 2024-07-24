@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Inspect this page for script answers
+</body>
+<script>
+    //implement a queue using array
+    array = [1, 2, 3, 4, 5];
+    function enqueue(element) {
+        array.push(element);
+    }
+    function dequeue() {
+        return array.shift();
+    }
+    function peek() {
+        return array[0];
+    }
+    function isEmpty() {
+        return array.length == 0;
+    }
+    function printQueue() {
+        console.log(array.toString());
+    }
+    printQueue();
+    enqueue(6);
+    printQueue();
+    console.log(dequeue());
+    console.log(peek());
+    console.log(isEmpty());
+
+
+    //implement a stack using array
+    array = [1, 2, 3, 4, 5];
+    function push(element) {
+        array.push(element);
+    }
+    function pop() {
+        return array.pop();
+    }
+    function peek() {
+        return array[array.length - 1];
+    }
+    function isEmpty() {
+        return array.length == 0;
+    }
+    function printStack() {
+        console.log(array.toString());
+    }
+    printStack();
+    push(6);
+    printStack();
+    console.log(pop());
+    console.log(isEmpty());
+
+    //rotating an array
+    function rotateArray(array, k) {
+        let n = array.length;
+        for (let i = 0; i < k; i++) {
+            let temp = array[n - 1];
+            for (let j = n - 1; j > 0; j--) {
+                array[j] = array[j - 1];
+            }
+            array[0] = temp;
+        }
+        return array;
+    }
+    console.log(rotateArray([1, 2, 3, 4, 5], 3));
+
+    //flatten an array without duplicates
+    function flattenArray(array) {
+    let result = [];
+    let uniqueElements = new Set();
+
+    function helper(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            if (Array.isArray(arr[i])) {
+                helper(arr[i]);
+            } else {
+                if (!uniqueElements.has(arr[i])) {
+                    uniqueElements.add(arr[i]);
+                    result.push(arr[i]);
+                }
+            }
+        }
+    }
+    helper(array);
+    return result;
+}
+
+console.log(flattenArray([1, 2, 3, [4, 5], [5, 6, 7], 2, 3, 4])); // Output: [1, 2, 3, 4, 5, 6, 7]
+
+
+    //flatten an array
+    function flattenArray(array) {
+        let result = [];
+        for (let i = 0; i < array.length; i++) {
+            if (Array.isArray(array[i])) {
+                result = result.concat(flattenArray(array[i]));
+            } else {
+                result.push(array[i]);
+            }
+        }
+        return result;
+    }
+    console.log(flattenArray([1, 2, 3, [4, 5],[2,3,4],6,5]));
+
+</script>
+
+</html>
